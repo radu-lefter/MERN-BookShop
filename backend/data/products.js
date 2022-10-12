@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'Emma',
     image: '/images/emma.jpg',
     description:
@@ -13,7 +12,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '2',
     name: 'Pride and Prejudice',
     image: '/images/pride_and_prejudice.jpg',
     description:
@@ -26,7 +24,6 @@ const products = [
     numReviews: 8,
   },
   {
-    _id: '3',
     name: 'Lady Susan',
     image: '/images/lady_susan.jpg',
     description:
@@ -39,7 +36,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '4',
     name: 'Sense and sensibility',
     image: '/images/sense_and_sensibility.jpg',
     description:
@@ -52,7 +48,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '5',
     name: 'Mansfield Park',
     image: '/images/mansfield_park.jpg',
     description:
@@ -65,7 +60,6 @@ const products = [
     numReviews: 10,
   },
   {
-    _id: '6',
     name: 'Persuasion',
     image: '/images/persuasion.jpg',
     description:

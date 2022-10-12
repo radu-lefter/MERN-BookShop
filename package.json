@@ -1,0 +1,22 @@
+{
+  "name": "mern-bookshop",
+  "version": "1.0.0",
+  "description": "Backend API for a bookshop",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radu-lefter/MERN-BookShop.git"
+  },
+  "author": "Radu Lefter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/radu-lefter/MERN-BookShop/issues"
+  },
+  "homepage": "https://github.com/radu-lefter/MERN-BookShop#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

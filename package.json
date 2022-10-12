@@ -21,9 +21,11 @@
   },
   "homepage": "https://github.com/radu-lefter/MERN-BookShop#readme",
   "dependencies": {
+    "colors": "^1.4.0",
     "concurrently": "^7.4.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "mongoose": "^6.6.5",
     "nodemon": "^2.0.20"
   }
 }

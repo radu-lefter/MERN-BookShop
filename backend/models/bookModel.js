@@ -11,7 +11,7 @@ const reviewSchema = mongoose.Schema(
   }
 )
 
-const productSchema = mongoose.Schema(
+const bookSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -65,6 +65,6 @@ const productSchema = mongoose.Schema(
   }
 )
 
-const Product = mongoose.model('Product', productSchema)
+const Book = mongoose.model('Book', bookSchema)
 
-export default Product
+export default Book

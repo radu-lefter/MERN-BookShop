@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import colors from 'colors'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
-import productRoutes from './routes/productRoutes.js'
+import bookRoutes from './routes/bookRoutes.js'
 
 dotenv.config()
 
@@ -11,7 +11,7 @@ connectDB()
 
 const app = express()
 
-app.use('/api/products', productRoutes)
+app.use('/api/books', bookRoutes)
 app.use(notFound)
 app.use(errorHandler)
 

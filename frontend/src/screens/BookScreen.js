@@ -5,19 +5,19 @@ import Rating from '../components/Rating'
 import {useParams} from  'react-router-dom'
 import axios from 'axios'
 
-const ProductScreen = () => {
+const BookScreen = () => {
 
   const params = useParams();
-  const [product, setProduct] = useState({})
+  const [book, setBook] = useState({})
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/products/${params.id}`)
+    const fetchBook = async () => {
+      const { data } = await axios.get(`/api/books/${params.id}`)
 
-      setProduct(data)
+      setBook(data)
     }
 
-    fetchProduct()
+    fetchBook()
   }, [params.id])
 
   return (
@@ -27,21 +27,21 @@ const ProductScreen = () => {
       </Link>
       <Row>
         <Col md={6}>
-          <Image src={product.image} alt={product.name} fluid />
+          <Image src={book.image} alt={book.name} fluid />
         </Col>
         <Col md={3}>
           <ListGroup variant='flush'>
             <ListGroup.Item>
-              <h3>{product.name}</h3>
+              <h3>{book.name}</h3>
             </ListGroup.Item>
             <ListGroup.Item>
               <Rating
-                value={product.rating}
-                text={`${product.numReviews} reviews`}
+                value={book.rating}
+                text={`${book.numReviews} reviews`}
               />
             </ListGroup.Item>
-            <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
-            <ListGroup.Item>Description: {product.description}</ListGroup.Item>
+            <ListGroup.Item>Price: ${book.price}</ListGroup.Item>
+            <ListGroup.Item>Description: {book.description}</ListGroup.Item>
           </ListGroup>
         </Col>
         <Col md={3}>
@@ -51,7 +51,7 @@ const ProductScreen = () => {
                 <Row>
                   <Col>Price:</Col>
                   <Col>
-                    <strong>${product.price}</strong>
+                    <strong>${book.price}</strong>
                   </Col>
                 </Row>
               </ListGroup.Item>
@@ -60,7 +60,7 @@ const ProductScreen = () => {
                 <Row>
                   <Col>Status:</Col>
                   <Col>
-                    {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                    {book.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
                   </Col>
                 </Row>
               </ListGroup.Item>
@@ -68,7 +68,7 @@ const ProductScreen = () => {
                 <Button
                   className='btn-block'
                   type='button'
-                  disabled={product.countInStock === 0}
+                  disabled={book.countInStock === 0}
                 >
                   Add To Cart
                 </Button>
@@ -81,4 +81,4 @@ const ProductScreen = () => {
   )
 }
 
-export default ProductScreen
+export default BookScreen

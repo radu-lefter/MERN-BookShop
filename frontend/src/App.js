@@ -19,7 +19,7 @@ function App() {
             <Route path="/book/:id" element={<BookScreen />} />
             <Route path='/cart' element={<CartScreen />} />
             <Route path='/cart/:id' element={<CartScreen />} />
-            <Route path='/login' component={<LoginScreen />} />
+            <Route path='/login' element={<LoginScreen />} />
           </Routes>
         </Container>
       </main>

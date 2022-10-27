@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
-import { listBookDetails } from '../actions/bookActions';
+import { listBookDetails, updateBook } from '../actions/bookActions';
+import { BOOK_UPDATE_RESET } from '../constants/bookConstants'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const BookEditScreen = () => {
@@ -26,23 +27,46 @@ const BookEditScreen = () => {
   const bookDetails = useSelector((state) => state.bookDetails);
   const { loading, error, book } = bookDetails;
 
+  const bookUpdate = useSelector((state) => state.bookUpdate)
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = bookUpdate
+
   useEffect(() => {
-    if (!book.name || book._id !== bookId) {
-      dispatch(listBookDetails(bookId));
+    if (successUpdate) {
+        dispatch({ type: BOOK_UPDATE_RESET })
+        navigate('/admin/booklist')
     } else {
-      setName(book.name);
-      setPrice(book.price);
-      setImage(book.image);
-      setPublisher(book.publisher);
-      setGenre(book.genre);
-      setCountInStock(book.countInSock);
-      setDescription(book.description);
+        if (!book.name || book._id !== bookId) {
+            dispatch(listBookDetails(bookId))
+          } else {
+            setName(book.name)
+            setPrice(book.price)
+            setImage(book.image)
+            setPublisher(book.publisher)
+            setGenre(book.genre)
+            setCountInStock(book.countInSock)
+            setDescription(book.description)
+          }
     }
-  }, [dispatch, navigate, bookId, book]);
+  }, [dispatch, navigate, bookId, book, successUpdate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    // UPDATE book
+    dispatch(
+        updateBook({
+          _id: bookId,
+          name,
+          price,
+          image,
+          publisher,
+          genre,
+          description,
+          countInStock,
+        })
+      )
   };
 
   return (
@@ -52,6 +76,8 @@ const BookEditScreen = () => {
       </Link>
       <FormContainer>
         <h1>Edit Book</h1>
+        {loadingUpdate && <Loader />}
+        {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
         {loading ? (
           <Loader />
         ) : error ? (

@@ -1,7 +1,13 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { bookListReducer, bookDetailsReducer, bookDeleteReducer, bookCreateReducer,} from './reducers/bookReducers';
+import {
+  bookListReducer,
+  bookDetailsReducer,
+  bookDeleteReducer,
+  bookCreateReducer,
+  bookUpdateReducer,
+} from './reducers/bookReducers';
 import { cartReducer } from './reducers/cartReducers';
 import {
   userLoginReducer,
@@ -12,13 +18,19 @@ import {
   userDeleteReducer,
   userUpdateReducer,
 } from './reducers/userReducers';
-import { orderCreateReducer, orderDetailsReducer, orderPayReducer, orderListMyReducer,} from './reducers/orderReducers'
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+  orderPayReducer,
+  orderListMyReducer,
+} from './reducers/orderReducers';
 
 const reducer = combineReducers({
   bookList: bookListReducer,
   bookDetails: bookDetailsReducer,
   bookDelete: bookDeleteReducer,
   bookCreate: bookCreateReducer,
+  bookUpdate: bookUpdateReducer,
   cart: cartReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
@@ -46,7 +58,10 @@ const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
   : {};
 
 const initialState = {
-  cart: { cartItems: cartItemsFromStorage, shippingAddress: shippingAddressFromStorage, },
+  cart: {
+    cartItems: cartItemsFromStorage,
+    shippingAddress: shippingAddressFromStorage,
+  },
   userLogin: { userInfo: userInfoFromStorage },
 };
 

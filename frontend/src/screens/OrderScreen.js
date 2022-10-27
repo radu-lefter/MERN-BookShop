@@ -8,7 +8,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getOrderDetails, payOrder } from '../actions/orderActions'
 import { ORDER_PAY_RESET } from '../constants/orderConstants'
-import { useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const OrderScreen = () => {
 

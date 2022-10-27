@@ -24,4 +24,19 @@ const getBookById = asyncHandler(async (req, res) => {
   }
 })
 
-export { getBooks, getBookById }
+// @desc    Delete a book
+// @route   DELETE /api/books/:id
+// @access  Private/Admin
+const deleteBook = asyncHandler(async (req, res) => {
+  const book = await Book.findById(req.params.id)
+
+  if (book) {
+    await book.remove()
+    res.json({ message: 'Book removed' })
+  } else {
+    res.status(404)
+    throw new Error('Book not found')
+  }
+})
+
+export { getBooks, getBookById, deleteBook }

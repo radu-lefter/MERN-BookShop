@@ -27,7 +27,10 @@ import {
       case BOOK_LIST_REQUEST:
         return { loading: true, books: [] }
       case BOOK_LIST_SUCCESS:
-        return { loading: false, books: action.payload }
+        return { loading: false,
+          books: action.payload.books,
+          pages: action.payload.pages,
+          page: action.payload.page, }
       case BOOK_LIST_FAIL:
         return { loading: false, error: action.payload }
       default:

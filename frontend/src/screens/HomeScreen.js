@@ -1,34 +1,41 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col } from 'react-bootstrap'
-import Book from '../components/Book'
-import Message from '../components/Message'
-import Loader from '../components/Loader'
-import { listBooks } from '../actions/bookActions'
-import { useParams } from 'react-router-dom';
-import Paginate from '../components/Paginate'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Row, Col } from 'react-bootstrap';
+import Book from '../components/Book';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
+import { listBooks } from '../actions/bookActions';
+import { Link, useParams } from 'react-router-dom';
+import Paginate from '../components/Paginate';
+import BookCarousel from '../components/BookCarousel';
 
 const HomeScreen = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const params = useParams();
-  const keyword = params.keyword
-  const pageNumber = params.pageNumber || 1
+  const keyword = params.keyword;
+  const pageNumber = params.pageNumber || 1;
 
-  const bookList = useSelector((state) => state.bookList)
-  const { loading, error, books, page, pages } = bookList
+  const bookList = useSelector((state) => state.bookList);
+  const { loading, error, books, page, pages } = bookList;
 
   useEffect(() => {
-    dispatch(listBooks(keyword, pageNumber))
-  }, [dispatch, keyword, pageNumber])
+    dispatch(listBooks(keyword, pageNumber));
+  }, [dispatch, keyword, pageNumber]);
 
   return (
     <>
+      {!keyword ? (
+        <BookCarousel />
+      ) : (
+        <Link to="/" className="btn btn-light">
+          Go Back
+        </Link>
+      )}
       <h1>Latest books</h1>
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant='danger'>{error}</Message>
+        <Message variant="danger">{error}</Message>
       ) : (
         <>
           <Row>
@@ -46,7 +53,7 @@ const HomeScreen = () => {
         </>
       )}
     </>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;

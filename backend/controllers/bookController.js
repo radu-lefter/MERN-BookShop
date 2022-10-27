@@ -148,4 +148,13 @@ const createBookReview = asyncHandler(async (req, res) => {
   }
 })
 
-export { getBooks, getBookById, deleteBook, createBook, updateBook, createBookReview }
+// @desc    Get top rated books
+// @route   GET /api/books/top
+// @access  Public
+const getTopBooks = asyncHandler(async (req, res) => {
+  const books = await Book.find({}).sort({ rating: -1 }).limit(3)
+
+  res.json(books)
+})
+
+export { getBooks, getBookById, deleteBook, createBook, updateBook, createBookReview, getTopBooks }

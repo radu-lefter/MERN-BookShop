@@ -6,10 +6,12 @@ import {
   deleteBook,
   createBook,
   updateBook,
+  createBookReview,
 } from '../controllers/bookController.js'
 import { protect, admin } from '../middleware/authMiddleware.js'
 
 router.route('/').get(getBooks).post(protect, admin, createBook)
+router.route('/:id/reviews').post(protect, createBookReview)
 router
   .route('/:id')
   .get(getBookById)
